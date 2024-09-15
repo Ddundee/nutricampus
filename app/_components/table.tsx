@@ -20,20 +20,24 @@ export default function Table({ }) {
     // }, [filteredData.length])
     return (
         <div className='p-2 min-h-screen flex flex-col'>
-            <h2 className='text-center font-bold mb-12'>Find Food</h2>
+            <h2 id='find' className='text-center font-bold mb-12'>Find Food</h2>
             {/* <p className='text-center border mb-12 mt-[-24px]'>Find the perfect food for you!</p> */}
             {/* <p>{data.length}</p>
             <p>{filteredData.length}</p> */}
-            <div className='flex gap-2 h-full [&>*]:rounded-md'>
-                <div className='border p-3'>
-                    <div className='text-center mb-4 font-medium'>Filter</div>
-                    <SelectTime />
-                    {/* <Slider /> */}
-                    <MacroSliders />
+            <div className='flex gap-2 flex-wrap min-[420px]:flex-nowrap h-full [&>*]:rounded-md'>
+                <div>
+                    <div className='min-[420px]:w-full items-center flex justify-center'>
+                        <div className='border rounded-md p-3'>
+                            <div className='text-center mb-4 font-medium'>Filter</div>
+                            <SelectTime />
+                            {/* <Slider /> */}
+                            <MacroSliders />
+                        </div>
+                    </div>
                 </div>
-                <div className='w-full flex flex-wrap gap-2'>
+                <div className='w-full grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3  gap-4'>
                     {filteredData.map((food, index) => (
-                        <div key={index} className='py-4 px-6 text-center flex flex-grow flex-col w-64 bg-yellow-200 rounded-md gap-4'>
+                        <div key={index} className='py-4 px-6 text-center w-auto flex flex-grow flex-col bg-yellow-200 rounded-md gap-4'>
                             <div>
                                 <h3 className='text-xl font-bold'>{food.foodName}</h3>
                                 <div>{food.restaurantName}</div>
@@ -76,7 +80,7 @@ function SelectTime({ parentStateUpdater }: { parentStateUpdater?: () => void })
 function MacroSliders() {
     const { protein, proteinLimit, carbs, carbsLimit, fat, fatLimit, time, change } = useFilter();
     return (
-        <div id='find' className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4'>
             <div>
                 <Label>Protein (grams)</Label>
                 <Slider
